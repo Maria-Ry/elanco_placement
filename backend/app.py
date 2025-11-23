@@ -2,13 +2,11 @@ from flask import Flask, jsonify, request, redirect
 from flask_cors import CORS
 from sqlalchemy.exc import SQLAlchemyError
 
-from database import Base, engine, SessionLocal
-from models import Sighting
+from backend.database import Base, engine, SessionLocal
+from backend.models import Sighting
 
 app = Flask(__name__)
 CORS(app)
-
-Base.metadata.create_all(bind=engine)
 
 def get_db():
     db = SessionLocal()

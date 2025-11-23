@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime
 from sqlalchemy.sql import func
 
-from database import Base
+from backend.core.database import Base
 
 
 class Sighting(Base):
@@ -10,6 +10,7 @@ class Sighting(Base):
     id = Column(Integer, primary_key=True, index=True)
     source = Column(String, default="user")
     species = Column(String, nullable=False)
+    latin_name = Column(String, nullable=True)
     severity = Column(String, nullable=True)
     region = Column(String, nullable=True)
 
