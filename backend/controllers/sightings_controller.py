@@ -12,10 +12,17 @@ sightings_bp = Blueprint("sightings", __name__, url_prefix="/api/sightings")
 def list_sightings_route():
     """
     GET /api/sightings
-    Return all sightings as JSON.
     """
+    region = request.args.get("region")
+    from_date = request.args.get("from")
+    to_date = request.args.get("to")
+
     try:
-        data = svc.list_sightings()
+        data = svc.list_sightings(
+            region=region,
+            from_date=from_date,
+            to_date=to_date,
+        )
         return jsonify(data)
     except SQLAlchemyError as e:
         print("DB error in list_sightings:", e)
@@ -26,7 +33,6 @@ def list_sightings_route():
 def create_sighting_route():
     """
     POST /api/sightings
-    Create a new sighting from JSON payload.
     """
     payload = request.get_json() or {}
 
