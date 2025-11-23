@@ -76,7 +76,6 @@ def create_sighting(
             source="user",
             species=data.get("species"),
             latin_name=data.get("latin_name"),
-            severity=data.get("severity"),
             region=data.get("region"),
             lat=data.get("lat"),
             lon=data.get("lon"),

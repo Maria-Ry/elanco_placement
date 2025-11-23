@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createSighting } from "../api";
+import LocationPickerMap from "../components/LocationPickerMap";
 
 function ReportPage() {
     const [form, setForm] = useState({
@@ -20,6 +21,25 @@ function ReportPage() {
         setForm((f) => ({ ...f, [name]: value }));
     }
 
+    function handleLocationChange(coords) {
+        if (!coords) {
+            setForm((f) => ({
+                ...f,
+                lat: "",
+                lon: "",
+            }));
+            return;
+        }
+
+        const { lat, lon } = coords;
+
+        setForm((f) => ({
+            ...f,
+            lat: lat.toFixed(5),
+            lon: lon.toFixed(5),
+        }));
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
         setError("");
@@ -37,6 +57,7 @@ function ReportPage() {
                 lat: form.lat ? parseFloat(form.lat) : null,
                 lon: form.lon ? parseFloat(form.lon) : null,
             };
+
             await createSighting(payload);
             setSuccess("Sighting reported successfully!");
 
@@ -55,13 +76,17 @@ function ReportPage() {
         }
     }
 
+    const mapValue =
+        form.lat && form.lon
+            ? { lat: parseFloat(form.lat), lon: parseFloat(form.lon) }
+            : null;
+
     return (
         <div>
             <h2>Report a Sighting</h2>
 
             {error && <p className="status-error">{error}</p>}
             {success && <p className="status-success">{success}</p>}
-
 
             <form className="report-form" onSubmit={handleSubmit}>
                 <label>
@@ -96,25 +121,16 @@ function ReportPage() {
                     />
                 </label>
 
-                <label>
-                    Latitude
-                    <input
-                        name="lat"
-                        value={form.lat}
-                        onChange={handleChange}
-                        placeholder="51.5074"
-                    />
-                </label>
-
-                <label>
-                    Longitude
-                    <input
-                        name="lon"
-                        value={form.lon}
-                        onChange={handleChange}
-                        placeholder="0.1278"
-                    />
-                </label>
+                <div className="map-field">
+                    <p>Select location on map (optional):</p>
+                    <LocationPickerMap value={mapValue} onChange={handleLocationChange} />
+                    <div className="coords-preview">
+                        <small>
+                            Selected:{" "}
+                            {form.lat && form.lon ? `${form.lat}, ${form.lon}` : "None"}
+                        </small>
+                    </div>
+                </div>
 
                 <label>
                     Notes
@@ -122,7 +138,6 @@ function ReportPage() {
                         name="notes"
                         value={form.notes}
                         onChange={handleChange}
-                        placeholder="Describe where you found the tick..."
                         rows={3}
                     />
                 </label>

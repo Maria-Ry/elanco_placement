@@ -1,10 +1,10 @@
 :root {
-  --bg: #1B1F23; 
-  --surface: #252A30;
-  --surface-soft: #2D333A;
+  --bg: #1b1f23;
+  --surface: #252a30;
+  --surface-soft: #2d333a;
 
-  --text: #E6E7E9;
-  --text-muted: #9CA3AD;
+  --text: #e6e7e9;
+  --text-muted: #9ca3ad;
 
   --accent: #6fffecbb;
   --accent-soft: #3f6f6926;
@@ -12,7 +12,7 @@
   --accent-alt: #c9b88a;
   --aura: #6fffec;
 
-  --border: #3A4047;
+  --border: #3a4047;
 
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -20,6 +20,8 @@
 
   --transition: 180ms ease;
 }
+
+/* RESET / BASE */
 
 *,
 *::before,
@@ -34,11 +36,12 @@ body {
   font-family: Inter, system-ui, sans-serif;
 }
 
-/* TOPBAR */
+/* ===== TOPBAR ===== */
 
 .topbar {
   position: sticky;
   top: 0;
+  z-index: 10;
   background: rgba(27, 31, 35, 0.85);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
@@ -79,7 +82,7 @@ body {
   color: var(--text);
 }
 
-/* CONTENT */
+/* ===== LAYOUT ===== */
 
 .content {
   max-width: 1000px;
@@ -100,7 +103,7 @@ body {
   margin-bottom: 1rem;
 }
 
-/* CARDS */
+/* ===== SIGHTING CARDS ===== */
 
 .sighting-list {
   list-style: none;
@@ -114,13 +117,13 @@ body {
   border-radius: var(--radius-md);
   padding: 1rem 1.2rem;
   border: 1px solid var(--border);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: var(--transition);
 }
 
 .sighting-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
   border-color: var(--accent-soft);
 }
 
@@ -140,14 +143,14 @@ body {
   color: var(--text-muted);
 }
 
-/* FORM */
+/* ===== REPORT FORM ===== */
 
 .report-form {
   background: var(--surface-soft);
   padding: 1.4rem 1.5rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
   max-width: 520px;
   display: grid;
   gap: 1rem;
@@ -186,7 +189,7 @@ body {
   min-height: 70px;
 }
 
-/* BUTTON */
+/* ===== BUTTONS ===== */
 
 .report-form button {
   background: var(--accent);
@@ -198,13 +201,13 @@ body {
   border-radius: var(--radius-md);
   cursor: pointer;
   width: fit-content;
-  box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
   transition: var(--transition);
 }
 
 .report-form button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.4);
   filter: brightness(1.05);
 }
 
@@ -212,7 +215,7 @@ body {
   transform: translateY(0);
 }
 
-/* STATUS MESSAGES */
+/* ===== STATUS MESSAGES ===== */
 
 .status-error,
 .status-success {
@@ -234,9 +237,83 @@ body {
   color: #b7fff1;
 }
 
-/* RESPONSIVE */
+/* ===== MAP-SPECIFIC UI ===== */
+
+.map-field {
+  margin-top: 0.4rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+}
+
+.coords-preview {
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Location picker inside report form */
+
+.location-picker {
+  margin-top: 0.4rem;
+}
+
+.location-picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-picker-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.location-coords {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.location-picker-clear {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.location-picker-map {
+  margin-top: 0.35rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.location-picker-hint {
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.leaflet-container {
+  background: #111;
+}
+
+/* ===== RESPONSIVE ===== */
+
 @media (max-width: 680px) {
-  .topbar-inner { padding: 0.8rem 1rem; }
-  .content { padding: 0 1rem; }
-  .report-form { padding: 1rem 1.1rem; }
+  .topbar-inner {
+    padding: 0.8rem 1rem;
+  }
+
+  .content {
+    padding: 0 1rem;
+  }
+
+  .report-form {
+    padding: 1rem 1.1rem;
+  }
 }

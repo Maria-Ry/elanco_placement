@@ -3,26 +3,28 @@ import MapPage from "./pages/MapPage.jsx";
 import ReportPage from "./pages/ReportPage.jsx";
 
 function App() {
-  return (
-    <div className="app">
-      <header className="topbar">
-        <div className="topbar-inner">
-          <h1>Tick Tracker</h1>
-          <nav>
-            <Link to="/">Map</Link>
-            <Link to="/report">Report a Sighting</Link>
-          </nav>
-        </div>
-      </header>
+    return (
+        <div className="app">
+            <header className="topbar">
+                <div className="topbar-inner">
+                    <h1>Tick Tracker</h1>
+                    <nav>
+                        <Link to="/">Map</Link>
+                        <Link to="/report">Report a Sighting</Link>
+                    </nav>
+                </div>
+            </header>
 
-      <main className="content">
-        <Routes>
-          <Route path="/" element={<MapPage />} />
-          <Route path="/report" element={<ReportPage />} />
-        </Routes>
-      </main>
-    </div>
-  );
+            <main className="content">
+                <Routes>
+                    <Route path="/" element={<MapPage />} />
+                    <Route path="/map" element={<MapPage />} />
+                    <Route path="/report" element={<ReportPage />} />
+                    <Route path="*" element={<MapPage />} />
+                </Routes>
+            </main>
+        </div>
+    );
 }
 
 export default App;
