@@ -17,8 +17,9 @@ export async function createSighting(payload) {
 
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
-    throw new Error(data.error || "Failed to create sighting");
+    throw new Error(data.error || data.details || "Failed to create sighting");
   }
 
   return res.json();
 }
+
