@@ -24,7 +24,6 @@ def hydrate_from_excel():
                 source="xlsx",
                 species=row.get("species"),
                 latin_name=row.get("latinName"),
-                severity=None,
                 region=row.get("location"),
 
                 lat=None,

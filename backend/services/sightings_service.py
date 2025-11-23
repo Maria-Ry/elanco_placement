@@ -1,27 +1,17 @@
 from typing import Any, Dict, List, Optional
-from datetime import datetime
 
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Query
 
 from backend.core.database import SessionLocal
 from backend.models.tick import Sighting
+from backend.utils.dates import parse_date
 
 
 class ValidationError(Exception):
     """Raised when input data is invalid for creating a Sighting."""
     pass
 
-def _parse_date(value: Optional[str]) -> Optional[datetime]:
-    if not value:
-        return None
-    try:
-        return datetime.strptime(value, "%Y-%m-%d")
-    except ValueError:
-        try:
-            return datetime.fromisoformat(value)
-        except ValueError:
-            return None
 
 def list_sightings(
         region: Optional[str] = None,
@@ -41,14 +31,14 @@ def list_sightings(
 
         rows = query.all()
 
-        start_dt = _parse_date(from_date)
-        end_dt = _parse_date(to_date)
+        start_dt = parse_date(from_date)
+        end_dt = parse_date(to_date)
 
         def keep(s: Sighting) -> bool:
             if not (start_dt or end_dt):
                 return True
 
-            d = _parse_date(s.date)
+            d = parse_date(s.date)
             if d is None:
                 return False
 

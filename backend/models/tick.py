@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, Float, DateTime
 from sqlalchemy.sql import func
 
 from backend.core.database import Base
-
+from backend.utils.sevirity import compute_severity
 
 class Sighting(Base):
     __tablename__ = "sightings"
@@ -11,7 +11,6 @@ class Sighting(Base):
     source = Column(String, default="user")
     species = Column(String, nullable=False)
     latin_name = Column(String, nullable=True)
-    severity = Column(String, nullable=True)
     region = Column(String, nullable=True)
 
     lat = Column(Float, nullable=True)
@@ -27,7 +26,7 @@ class Sighting(Base):
             "id": self.id,
             "source": self.source,
             "species": self.species,
-            "severity": self.severity,
+            "severity": compute_severity(self.date),
             "region": self.region,
             "lat": self.lat,
             "lon": self.lon,

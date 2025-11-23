@@ -4,7 +4,6 @@ import { createSighting } from "../api";
 function ReportPage() {
     const [form, setForm] = useState({
         species: "",
-        severity: "",
         region: "",
         lat: "",
         lon: "",
@@ -43,7 +42,6 @@ function ReportPage() {
 
             setForm({
                 species: "",
-                severity: "",
                 region: "",
                 lat: "",
                 lon: "",
@@ -89,20 +87,6 @@ function ReportPage() {
                 </label>
 
                 <label>
-                    Severity
-                    <select
-                        name="severity"
-                        value={form.severity}
-                        onChange={handleChange}
-                    >
-                        <option value="">Select…</option>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
-                </label>
-
-                <label>
                     Region / City
                     <input
                         name="region"
@@ -128,7 +112,7 @@ function ReportPage() {
                         name="lon"
                         value={form.lon}
                         onChange={handleChange}
-                        placeholder="-0.1278"
+                        placeholder="0.1278"
                     />
                 </label>
 
