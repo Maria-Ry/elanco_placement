@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 from backend.controllers.sightings_controller import sightings_bp
+from backend.controllers.report_controller import reports_bp
 
 
 def create_app() -> Flask:
@@ -13,6 +14,7 @@ def create_app() -> Flask:
         return jsonify({"status": "ok"})
 
     app.register_blueprint(sightings_bp)
+    app.register_blueprint(reports_bp)
 
     return app
 

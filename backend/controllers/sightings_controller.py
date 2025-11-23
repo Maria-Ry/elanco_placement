@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from sqlalchemy.exc import SQLAlchemyError
 
 from backend.services import sightings_service as svc
-from backend.services.sightings_service import ValidationError
+from backend.utils.errors import ValidationError
 
 
 sightings_bp = Blueprint("sightings", __name__, url_prefix="/api/sightings")
@@ -12,6 +12,10 @@ sightings_bp = Blueprint("sightings", __name__, url_prefix="/api/sightings")
 def list_sightings_route():
     """
     GET /api/sightings
+    Optional query params:
+      - region
+      - from (date string)
+      - to   (date string)
     """
     region = request.args.get("region")
     from_date = request.args.get("from")

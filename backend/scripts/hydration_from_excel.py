@@ -1,6 +1,8 @@
 import pandas as pd
 from pathlib import Path
 
+from datetime import datetime
+
 from backend.core.database import SessionLocal
 from backend.models.tick import Sighting
 from backend.core.config import BASE_DIR
@@ -29,7 +31,7 @@ def hydrate_from_excel():
                 lat=None,
                 lon=None,
 
-                date=str(row.get("date")),
+                date=datetime.fromisoformat(str(row["date"])),
                 notes=None
             )
 

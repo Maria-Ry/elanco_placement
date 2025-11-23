@@ -1,16 +1,12 @@
 from typing import Any, Dict, List, Optional
 
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import Query
 
 from backend.core.database import SessionLocal
 from backend.models.tick import Sighting
+from backend.repositories.sightings_repository import find_sightings
 from backend.utils.dates import parse_date
-
-
-class ValidationError(Exception):
-    """Raised when input data is invalid for creating a Sighting."""
-    pass
+from backend.utils.errors import ValidationError
 
 
 def list_sightings(
@@ -19,37 +15,17 @@ def list_sightings(
         to_date: Optional[str] = None,
     ) -> List[Dict[str, Any]]:
     """
-    Return sightings as a list of dicts, optionally filtered
-    by region and date range.
+    Return sightings as a list of dicts, filterable by region and date range.
     """
     session = SessionLocal()
     try:
-        query: Query = session.query(Sighting).order_by(Sighting.id.desc())
-
-        if region:
-            query = query.filter(Sighting.region == region)
-
-        rows = query.all()
-
-        start_dt = parse_date(from_date)
-        end_dt = parse_date(to_date)
-
-        def keep(s: Sighting) -> bool:
-            if not (start_dt or end_dt):
-                return True
-
-            d = parse_date(s.date)
-            if d is None:
-                return False
-
-            if start_dt and d < start_dt:
-                return False
-            if end_dt and d > end_dt:
-                return False
-            return True
-
-        filtered = [s for s in rows if keep(s)]
-        return [s.to_dict() for s in filtered]
+        rows = find_sightings(
+            session,
+            region=region,
+            from_date=from_date,
+            to_date=to_date,
+        )
+        return [s.to_dict() for s in rows]
 
     except SQLAlchemyError:
         session.rollback()
@@ -70,6 +46,9 @@ def create_sighting(
     if missing:
         raise ValidationError(f"Missing fields: {', '.join(missing)}")
 
+    date_str = data.get("date")
+    date_obj = parse_date(date_str)
+
     session = SessionLocal()
     try:
         sighting = Sighting(
@@ -79,7 +58,7 @@ def create_sighting(
             region=data.get("region"),
             lat=data.get("lat"),
             lon=data.get("lon"),
-            date=data.get("date"),
+            date=date_obj,
             notes=data.get("notes"),
         )
 

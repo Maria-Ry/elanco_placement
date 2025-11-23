@@ -1,27 +1,29 @@
 from datetime import datetime, timezone
 from typing import Optional
 
-from backend.utils.dates import parse_date
 
-
-def compute_severity(date_str: Optional[str]) -> str:
+def compute_severity(date_value: Optional[datetime]) -> str:
     """
     Compute severity based on recency of the sighting date.
 
     - 'high'    - sighting within last 7 days
-    - 'medium'  - sighting within last 30 days
+    - 'medium'  - within last 30 days
     - 'low'     - older than 30 days
-    - 'unknown' - invalid or missing date
+    - 'unknown' - missing or invalid date
     """
-    d = parse_date(date_str)
-    if not d:
+
+    if date_value is None:
         return "unknown"
 
-    if d.tzinfo is None:
-        d = d.replace(tzinfo=timezone.utc)
+    if date_value.tzinfo is None:
+        d = date_value.replace(tzinfo=timezone.utc)
+    else:
+        d = date_value
 
     now = datetime.now(timezone.utc)
-    days = (now - d).days
+
+    delta = now - d
+    days = delta.days
 
     if days <= 7:
         return "high"

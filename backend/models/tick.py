@@ -4,6 +4,7 @@ from sqlalchemy.sql import func
 from backend.core.database import Base
 from backend.utils.sevirity import compute_severity
 
+
 class Sighting(Base):
     __tablename__ = "sightings"
 
@@ -16,21 +17,25 @@ class Sighting(Base):
     lat = Column(Float, nullable=True)
     lon = Column(Float, nullable=True)
 
-    date = Column(String, nullable=False)
+    date = Column(DateTime(timezone=True), nullable=False)
     notes = Column(String, nullable=True)
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    @property
+    def severity(self) -> str:
+        return compute_severity(self.date)
 
     def to_dict(self):
         return {
             "id": self.id,
             "source": self.source,
             "species": self.species,
-            "severity": compute_severity(self.date),
+            "severity": self.severity,
             "region": self.region,
             "lat": self.lat,
             "lon": self.lon,
-            "date": self.date,
+            "date": self.date.isoformat() if self.date else None,
             "notes": self.notes,
             "created_at": self.created_at.isoformat() if self.created_at else None,
         }
