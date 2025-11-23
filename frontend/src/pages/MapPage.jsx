@@ -25,7 +25,7 @@ function MapPage() {
     if (error) return <p className="status-error">{error}</p>;
 
     return (
-        <div>
+        <div className="content map-page">
             <h2>Tick Sightings Overview</h2>
             <p>
                 Zoomed out: circles show regional risk. Zoom in to see individual reports where
@@ -33,6 +33,21 @@ function MapPage() {
             </p>
 
             <RiskMap sightings={sightings} />
+
+            <h3 className="list-title">Recent Sightings</h3>
+            <ul className="sighting-list">
+                {sightings.map((s, idx) => (
+                    <li key={idx} className="sighting-card">
+                        <strong>{s.species}</strong>
+                        <div className="notes">{s.notes || "No notes"}</div>
+
+                        <div className="meta">
+                            {s.region && <span>Region: {s.region} • </span>}
+                            <span>{s.date}</span>
+                        </div>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

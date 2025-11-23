@@ -1,0 +1,11 @@
+.map-field-title {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.map-field-hint {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

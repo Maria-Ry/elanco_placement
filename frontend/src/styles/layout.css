@@ -1,0 +1,31 @@
+.content {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1.2rem;
+}
+
+.content h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--accent-alt);
+}
+
+.content p {
+  color: var(--text-muted);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.report-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+
+@media (max-width: 680px) {
+  .content {
+    padding: 0 1rem;
+  }
+}

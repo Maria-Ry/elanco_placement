@@ -82,69 +82,91 @@ function ReportPage() {
             : null;
 
     return (
-        <div>
-            <h2>Report a Sighting</h2>
+        <div className="content report-page">
+            <header className="page-header">
+                <h2>Report a Sighting</h2>
+                <p>Help track tick activity by logging where and when you saw them.</p>
+            </header>
 
             {error && <p className="status-error">{error}</p>}
             {success && <p className="status-success">{success}</p>}
 
             <form className="report-form" onSubmit={handleSubmit}>
-                <label>
-                    Species *
-                    <input
-                        name="species"
-                        value={form.species}
-                        onChange={handleChange}
-                        placeholder="e.g. Ixodes ricinus"
-                        required
-                    />
-                </label>
-
-                <label>
-                    Date *
-                    <input
-                        type="date"
-                        name="date"
-                        value={form.date}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-
-                <label>
-                    Region / City
-                    <input
-                        name="region"
-                        value={form.region}
-                        onChange={handleChange}
-                        placeholder="e.g. London"
-                    />
-                </label>
-
-                <div className="map-field">
-                    <p>Select location on map (optional):</p>
-                    <LocationPickerMap value={mapValue} onChange={handleLocationChange} />
-                    <div className="coords-preview">
-                        <small>
-                            Selected:{" "}
-                            {form.lat && form.lon ? `${form.lat}, ${form.lon}` : "None"}
-                        </small>
-                    </div>
+                <div className="report-form-header">
+                    <span>Fields marked * are required.</span>
                 </div>
 
-                <label>
-                    Notes
-                    <textarea
-                        name="notes"
-                        value={form.notes}
-                        onChange={handleChange}
-                        rows={3}
-                    />
-                </label>
+                <div className="report-form-grid">
+                    <div className="report-form-main">
+                        <label>
+                            Species *
+                            <input
+                                name="species"
+                                value={form.species}
+                                onChange={handleChange}
+                                placeholder="e.g. Ixodes ricinus"
+                                required
+                            />
+                        </label>
 
-                <button type="submit" disabled={submitting}>
-                    {submitting ? "Submitting..." : "Submit"}
-                </button>
+                        <div className="report-form-row">
+                            <label>
+                                Date *
+                                <input
+                                    type="date"
+                                    name="date"
+                                    value={form.date}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </label>
+
+                            <label>
+                                Region / City
+                                <input
+                                    name="region"
+                                    value={form.region}
+                                    onChange={handleChange}
+                                    placeholder="e.g. London"
+                                />
+                            </label>
+                        </div>
+
+                        <label>
+                            Notes
+                            <textarea
+                                name="notes"
+                                value={form.notes}
+                                onChange={handleChange}
+                                rows={3}
+                                placeholder="Behaviour, environment, weather, host animal, etc."
+                            />
+                        </label>
+                    </div>
+
+                    <div className="report-form-side">
+                        <h3 className="side-title">Location on map (optional)</h3>
+                        <p className="map-field-hint">
+                            Click on the map to drop a pin. If you’re not sure, a rough area is still useful.
+                        </p>
+
+                        <LocationPickerMap value={mapValue} onChange={handleLocationChange} />
+
+                        <div className="coords-preview">
+                            <small>
+                                Selected:{" "}
+                                {form.lat && form.lon ? `${form.lat}, ${form.lon}` : "None"}
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="report-form-actions">
+                    <button type="submit" className="btn-primary" disabled={submitting}>
+                        {submitting ? "Submitting..." : "Submit sighting"}
+                    </button>
+                </div>
             </form>
         </div>
     );

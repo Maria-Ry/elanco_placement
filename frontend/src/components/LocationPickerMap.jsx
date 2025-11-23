@@ -36,7 +36,6 @@ export default function LocationPickerMap({ value, onChange }) {
     return (
         <div className="location-picker">
             <div className="location-picker-header">
-                <span>Location on map</span>
                 <div className="location-picker-meta">
                     {internalPosition && (
                         <span className="location-coords">
@@ -69,11 +68,6 @@ export default function LocationPickerMap({ value, onChange }) {
                     {internalPosition && <Marker position={internalPosition} />}
                 </MapContainer>
             </div>
-
-            <p className="location-picker-hint">
-                Click on the map to set the approximate location of the sighting. Use
-                “Clear” to remove it.
-            </p>
         </div>
     );
 }
