@@ -54,3 +54,23 @@ export async function fetchTrends({ groupBy = "month", region, from, to } = {}) 
   }
   return res.json();
 }
+
+export async function predictSpecies({ location, season, year, month }) {
+  const res = await fetch(`${API_BASE}/insights/predict-species`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      location,
+      season,
+      year: Number(year),
+      month: Number(month),
+    }),
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || "Failed to fetch prediction");
+  }
+
+  return res.json();
+}

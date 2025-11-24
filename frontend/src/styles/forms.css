@@ -4,7 +4,7 @@
   gap: 1.2rem;
 }
 
-.report-form {
+.form {
   background: var(--surface-soft);
   padding: 1.4rem 1.5rem;
   border-radius: var(--radius-lg);
@@ -12,7 +12,7 @@
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
 
-.report-form label {
+.form label {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -20,9 +20,9 @@
   font-size: 0.93rem;
 }
 
-.report-form input,
-.report-form select,
-.report-form textarea {
+.form input,
+.form select,
+.form textarea {
   background: var(--surface);
   border: 1px solid var(--border);
   padding: 0.65rem 0.75rem;
@@ -33,54 +33,54 @@
   width: 100%;
 }
 
-.report-form input:focus-visible,
-.report-form select:focus-visible,
-.report-form textarea:focus-visible {
+.form input:focus-visible,
+.form select:focus-visible,
+.form textarea:focus-visible {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--accent-soft);
 }
 
-.report-form textarea {
+.form textarea {
   resize: vertical;
   min-height: 70px;
 }
 
 
-.report-form-header {
+.form-header {
   font-size: 0.8rem;
   color: var(--text-muted);
   margin-bottom: 0.6rem;
 }
 
 
-.report-form-grid {
+.form-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
   gap: 1.2rem;
   align-items: flex-start;
 }
 
-.report-form-main {
+.form-main {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
 }
 
 
-.report-form-row {
+.form-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.8rem;
 }
 
-.report-form-side {
+.form-side {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
 
-.report-form-actions {
+.form-actions {
   margin-top: 1.2rem;
   display: flex;
   justify-content: flex-end;
@@ -100,11 +100,11 @@
 }
 
 @media (max-width: 800px) {
-  .report-form-grid {
+  .form-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .report-form-row {
+  .form-row {
     grid-template-columns: minmax(0, 1fr);
   }
 }

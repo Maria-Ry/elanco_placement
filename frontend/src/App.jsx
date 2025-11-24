@@ -2,6 +2,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import MapPage from "./pages/MapPage.jsx";
 import ReportPage from "./pages/ReportPage.jsx";
 import ReportsPage from "./pages/ReportsPage.jsx";
+import InsightsPage from "./pages/InsightsPage.jsx";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                         <Link to="/">Map</Link>
                         <Link to="/report">Report a Sighting</Link>
                         <Link to="/reports">Reports</Link>
+                        <Link to="/insights">AI / ML Insights</Link>
                     </nav>
                 </div>
             </header>
@@ -23,6 +25,7 @@ function App() {
                     <Route path="/map" element={<MapPage />} />
                     <Route path="/report" element={<ReportPage />} />
                     <Route path="/reports" element={<ReportsPage />} />
+                    <Route path="/insights" element={<InsightsPage />} />
                     <Route path="*" element={<MapPage />} />
                 </Routes>
             </main>

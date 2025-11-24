@@ -91,13 +91,13 @@ function ReportPage() {
             {error && <p className="status-error">{error}</p>}
             {success && <p className="status-success">{success}</p>}
 
-            <form className="report-form" onSubmit={handleSubmit}>
-                <div className="report-form-header">
+            <form className="form" onSubmit={handleSubmit}>
+                <div className="form-header">
                     <span>Fields marked * are required.</span>
                 </div>
 
-                <div className="report-form-grid">
-                    <div className="report-form-main">
+                <div className="form-grid">
+                    <div className="form-main">
                         <label>
                             Species *
                             <input
@@ -109,7 +109,7 @@ function ReportPage() {
                             />
                         </label>
 
-                        <div className="report-form-row">
+                        <div className="form-row">
                             <label>
                                 Date *
                                 <input
@@ -144,7 +144,7 @@ function ReportPage() {
                         </label>
                     </div>
 
-                    <div className="report-form-side">
+                    <div className="form-side">
                         <h3 className="side-title">Location on map (optional)</h3>
                         <p className="map-field-hint">
                             Click on the map to drop a pin. If you’re not sure, a rough area is still useful.
@@ -162,7 +162,7 @@ function ReportPage() {
 
                 </div>
 
-                <div className="report-form-actions">
+                <div className="form-actions">
                     <button type="submit" className="btn-primary" disabled={submitting}>
                         {submitting ? "Submitting..." : "Submit sighting"}
                     </button>
