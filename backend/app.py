@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 from backend.controllers.sightings_controller import sightings_bp
 from backend.controllers.report_controller import reports_bp
+from backend.controllers.insights_controller import insights_bp
 
 
 def create_app() -> Flask:
@@ -15,6 +16,7 @@ def create_app() -> Flask:
 
     app.register_blueprint(sightings_bp)
     app.register_blueprint(reports_bp)
+    app.register_blueprint(insights_bp)
 
     return app
 

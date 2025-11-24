@@ -2,6 +2,7 @@ from __future__ import annotations
 import random
 from typing import Tuple
 
+
 CITY_COORDS: dict[str, Tuple[float, float]] = {
     "London":      (51.509865, -0.118092),
     "Birmingham":  (52.489471, -1.898575),
@@ -23,7 +24,7 @@ DEFAULT_COORDS: Tuple[float, float] = (54.0, -3.0)
 
 
 def get_jittered_coords(region: str | None, jitter_deg: float = 0.05) -> Tuple[float, float]:
-    
+
     if region is None:
         base_lat, base_lon = DEFAULT_COORDS
     else:

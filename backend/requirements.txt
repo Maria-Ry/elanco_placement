@@ -4,3 +4,5 @@ sqlalchemy
 alembic
 pandas
 openpyxl
+scikit-learn
+joblib
