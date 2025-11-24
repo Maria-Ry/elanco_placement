@@ -4,28 +4,6 @@
   gap: 1.8rem;
 }
 
-/* ---------- Header ---------- */
-
-.reports-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.reports-header h2 {
-  font-size: 1.6rem;
-  margin-bottom: 0.3rem;
-  color: var(--accent-alt);
-}
-
-.reports-header p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: var(--text-muted);
-}
-
-/* Trend granularity toggle */
 
 .group-toggle {
   display: flex;
