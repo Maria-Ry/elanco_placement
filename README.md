@@ -1,4 +1,4 @@
-# TickSight UK - Elanco Placement Task (Backend + Frontend)
+# TickTracker UK - Elanco Placement Task (Backend + Frontend)
 
 This repo contains a small **full-stack MVP** for a UK tick-sighting tracker, built for the Elanco placement technical exercise.
 
