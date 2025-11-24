@@ -25,7 +25,7 @@ function MapPage() {
     if (error) return <p className="status-error">{error}</p>;
 
     return (
-        <div className="content map-page">
+        <div className="map-page">
             <header className="page-header">
                 <h2>Tick Sightings Overview</h2>
                 <p>View reported tick sightings across different regions.</p>

@@ -77,7 +77,7 @@ function ReportsPage() {
     );
 
     return (
-        <div className="content reports-page">
+        <div className="reports-page">
             <header className="page-header">
                 <div>
                     <h2>Insights & Reports</h2>

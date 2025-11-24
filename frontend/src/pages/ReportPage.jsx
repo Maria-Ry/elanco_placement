@@ -82,7 +82,7 @@ function ReportPage() {
             : null;
 
     return (
-        <div className="content report-page">
+        <div className="report-page">
             <header className="page-header">
                 <h2>Report a Sighting</h2>
                 <p>Help track tick activity by logging where and when you saw them.</p>
