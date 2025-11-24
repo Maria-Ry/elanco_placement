@@ -55,7 +55,7 @@ export default function LocationPickerMap({ value, onChange }) {
             </div>
 
             <div className="location-picker-map">
-                <MapContainer
+                <MapContainer className="map-container"
                     center={internalPosition || defaultCenter}
                     zoom={6}
                     style={{ height: "260px", width: "100%" }}

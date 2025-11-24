@@ -134,7 +134,7 @@ export default function RiskMap({ sightings }) {
     const showClusters = zoom < zoomThreshold;
 
     return (
-        <MapContainer
+        <MapContainer className="map-container"
             center={[54.5, -3.0]}
             zoom={6}
             style={{ height: "500px", width: "100%" }}
