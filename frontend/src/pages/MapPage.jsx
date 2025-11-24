@@ -26,7 +26,11 @@ function MapPage() {
 
     return (
         <div className="content map-page">
-            <h2>Tick Sightings Overview</h2>
+            <header className="page-header">
+                <h2>Tick Sightings Overview</h2>
+                <p>View reported tick sightings across different regions.</p>
+            </header>
+
             <p>
                 Zoomed out: circles show regional risk. Zoom in to see individual reports where
                 a map location was provided.

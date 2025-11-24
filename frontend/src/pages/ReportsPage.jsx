@@ -78,7 +78,7 @@ function ReportsPage() {
 
     return (
         <div className="content reports-page">
-            <header className="reports-header">
+            <header className="page-header">
                 <div>
                     <h2>Insights & Reports</h2>
                     <p>Explore tick activity by region and over time.</p>

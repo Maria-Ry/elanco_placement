@@ -45,7 +45,7 @@ export default function LocationPickerMap({ value, onChange }) {
                     {internalPosition && (
                         <button
                             type="button"
-                            className="location-picker-clear"
+                            className="btn-secondary"
                             onClick={handleClear}
                         >
                             Clear
