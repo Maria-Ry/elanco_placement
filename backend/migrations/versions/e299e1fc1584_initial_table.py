@@ -1,8 +1,8 @@
-"""create sightings table
+"""initial table
 
-Revision ID: f7b9c71ee413
+Revision ID: e299e1fc1584
 Revises: 
-Create Date: 2025-11-23 15:09:30.982820
+Create Date: 2025-11-24 02:10:32.545604
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'f7b9c71ee413'
+revision: str = 'e299e1fc1584'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -26,11 +26,10 @@ def upgrade() -> None:
     sa.Column('source', sa.String(), nullable=True),
     sa.Column('species', sa.String(), nullable=False),
     sa.Column('latin_name', sa.String(), nullable=True),
-    sa.Column('severity', sa.String(), nullable=True),
     sa.Column('region', sa.String(), nullable=True),
     sa.Column('lat', sa.Float(), nullable=True),
     sa.Column('lon', sa.Float(), nullable=True),
-    sa.Column('date', sa.String(), nullable=False),
+    sa.Column('date', sa.DateTime(timezone=True), nullable=False),
     sa.Column('notes', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.PrimaryKeyConstraint('id')
