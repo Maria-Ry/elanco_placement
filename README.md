@@ -38,7 +38,7 @@ elanco_placement/
 The backend is structured around a simple service-layer pattern:
 
 * `backend/models/` - SQLAlchemy models  
-  * e.g. `Sighting` with fields like `id`, `date`, `region`, `lat`, `lon`, `species`, `severity`, `source`, and optional `notes`.
+  * e.g. `Sighting` with fields like `id`, `date`, `region`, `lat`, `lon`, `species`, `source`, and optional `notes`.
 
 * `backend/services/` - business logic  
   * `sightings_service.py` - listing, filtering and creating new sightings.  
@@ -56,21 +56,16 @@ The backend is structured around a simple service-layer pattern:
 **Data handling & ingestion**
 
 * The app starts from a **raw dataset** hydrated into SQLite.
-* During ingestion, the service:
-  * normalises date/time formats,
-  * fills/standardises region labels where possible,
-  * skips rows with missing critical fields (e.g. `date`, `region`).
-* `lat`, `lon`, `notes`, `source` columd added.
-
-This results in a clean, queryable DB exposed via clear HTTP endpoints.
+* During ingestion, the service normalises date/time formats
+* `lat`, `lon`, `notes`, `source` columns added.
 
 ---
 
 ### 2.3. HTTP API Overview
 
-Base URL (frontend/api.js):
+Base URL (if differs, change in frontend/api.js):
 
-* `http://127.0.0.1:5000` (default Flask port unless you override it)
+* `http://127.0.0.1:5000` (default Flask port)
 
 All endpoints are prefixed with `/api`.
 
@@ -214,7 +209,7 @@ From the **backend task**:
   * `GET /api/reports/timeline` → **trends over time** (weekly/monthly).
 
 * **Error handling**
-  * Separate service layer with custom `ValidationError` for bad input.
+  * `utils/errors.py`. 
   * DB errors wrapped and returned with clean JSON error messages.
 
 * **AI/ML (extension - hook ready)**
