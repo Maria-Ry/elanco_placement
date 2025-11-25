@@ -2,5 +2,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 
-DATABASE_PATH = BASE_DIR / "instance" / "ticktracker.db"
+INSTANCE_DIR = BASE_DIR / "instance"
+INSTANCE_DIR.mkdir(exist_ok=True)
+
+DATABASE_PATH = INSTANCE_DIR / "ticktracker.db"
 DATABASE_URL = f"sqlite:///{DATABASE_PATH}"
