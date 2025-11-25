@@ -21,7 +21,7 @@ elanco_placement/
 
 ---
 
-## 2. Backend - TickSight API (Flask)
+## 2. Backend - TickTracker API (Flask)
 
 ### 2.1. Tech Stack
 
